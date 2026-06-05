@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.recharts-sector:focus {
+  outline: none;
+}
+
+.recharts-sector {
+  outline: none;
+}
+.recharts-wrapper:focus {
+  outline: none;
+}
+
+.recharts-wrapper svg:focus {
+  outline: none;
+}
+
+.recharts-surface:focus {
+  outline: none;
+}

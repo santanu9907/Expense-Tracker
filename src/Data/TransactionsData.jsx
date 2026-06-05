@@ -1,0 +1,98 @@
+import { GiReceiveMoney } from "react-icons/gi";
+import { MdShoppingBag } from "react-icons/md";
+
+import { FaBolt } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
+
+export const transactions = [
+  {
+    id: 1,
+    title: "Salary",
+    category: "Income",
+    amount: 30000,
+    date: "May 25",
+    type: "income",
+    icon: <GiReceiveMoney />,
+  },
+  {
+    id: 2,
+    title: "Grocery Shopping",
+    category: "Food & Dining",
+    amount: 1200,
+    date: "May 24",
+    type: "expense",
+    icon: <MdShoppingBag />,
+  },
+  {
+    id: 3,
+    title: "Netflix",
+    category: "Entertainment",
+    amount: 499,
+    date: "May 23",
+    type: "expense",
+    icon: <MdShoppingBag />,
+  },
+  {
+    id: 4,
+    title: "Freelance Work",
+    category: "Income",
+    amount: 8000,
+    date: "May 22",
+    type: "income",
+    icon: <FaLaptopCode />,
+  },
+  {
+    id: 5,
+    title: "Electric Bill",
+    category: "Utilities",
+    amount: 1500,
+    date: "May 21",
+    type: "expense",
+    icon: <FaBolt />,
+  },
+  {
+    id: 6,
+    title: "Salary",
+    category: "Income",
+    amount: 30000,
+    date: "May 25",
+    type: "income",
+    icon: <GiReceiveMoney />,
+  },
+  {
+    id: 7,
+    title: "Grocery Shopping",
+    category: "Food & Dining",
+    amount: 1200,
+    date: "May 24",
+    type: "expense",
+    icon: <MdShoppingBag />,
+  },
+  {
+    id: 8,
+    title: "Netflix",
+    category: "Entertainment",
+    amount: 499,
+    date: "May 23",
+    type: "expense",
+    icon: <MdShoppingBag />,
+  },
+  {
+    id: 9,
+    title: "Freelance Work",
+    category: "Income",
+    amount: 8000,
+    date: "May 22",
+    type: "income",
+    icon: <FaLaptopCode />,
+  },
+  {
+    id: 10,
+    title: "Electric Bill",
+    category: "Utilities",
+    amount: 1500,
+    date: "May 21",
+    type: "expense",
+    icon: <FaBolt />,
+  },
+];
