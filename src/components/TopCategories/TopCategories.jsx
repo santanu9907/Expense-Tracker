@@ -1,52 +1,52 @@
-import { MdFastfood } from "react-icons/md";
-import { FaCar } from "react-icons/fa";
-import { FaShoppingBag } from "react-icons/fa";
-import { FaFileInvoiceDollar } from "react-icons/fa";
+import TransactionStore from "../../Store/TransactionStore";
+import { categoryConfig } from "../../constants/categoryconfig";
+import { BsThreeDots } from "react-icons/bs";
+
 const TopCategories = () => {
-  const categories = [
-    {
-      name: "Food & Dining",
-      amount: 5000,
-      color: "#8B5CF6",
-      icon: <MdFastfood />,
-    },
-    {
-      name: "Transport",
-      amount: 3000,
-      color: "#22C55E",
-      icon: <FaCar />,
-    },
-    {
-      name: "Shopping",
-      amount: 2500,
-      color: "#F59E0B",
-      icon: <FaShoppingBag />,
-    },
-    {
-      name: "Bills",
-      amount: 2000,
-      color: "#EF4444",
-      icon: <FaFileInvoiceDollar />,
-    },
-  ];
-  const sortedCategories = [...categories].sort((a, b) => b.amount - a.amount);
+  const categoryTotals = {};
+  const transactions = TransactionStore((state) => state.transactions);
+
+  const expenses = transactions.filter((item) => item.type === "Expense");
+
+  expenses.forEach((item) => {
+    categoryTotals[item.category] =
+      (categoryTotals[item.category] || 0) + item.amount;
+  });
+
+  const categoryArray = Object.entries(categoryTotals).map(
+    ([category, amount]) => ({
+      name: category,
+      amount,
+      color: categoryConfig[category]?.color || "#6B7280",
+      icon: categoryConfig[category]?.icon || BsThreeDots,
+    }),
+  );
+
+  const sortedCategories = categoryArray
+    .sort((a, b) => b.amount - a.amount)
+    .slice(0, 4);
   return (
     <div className="flex  border-2 p-4 mt-2 items-center justify-around border-gray-300 rounded-lg">
-      {sortedCategories.map((item) => (
-        <div className="flex flex-col items-center ">
-          <div
-            className="text-2xl p-2 rounded-full"
-            style={{
-              backgroundColor: `${item.color}40`,
-              color: item.color,
-            }}
-          >
-            {item.icon}
+      {sortedCategories.map((item) => {
+        const Icon = item.icon;
+
+        return (
+          <div key={item.name} className="flex flex-col items-center">
+            <div
+              className="text-2xl p-2 rounded-full"
+              style={{
+                backgroundColor: `${item.color}40`,
+                color: item.color,
+              }}
+            >
+              <Icon />
+            </div>
+
+            <span className="font-medium">{item.name}</span>
+            <span className="font-medium">₹{item.amount.toLocaleString()}</span>
           </div>
-          <span className="font-medium">{item.name}</span>
-          <span className="font-medium">{item.amount}</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

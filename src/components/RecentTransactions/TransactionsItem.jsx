@@ -1,9 +1,22 @@
-const TransactionsItem = ({ title, category, amount, type, date, icon }) => {
+const TransactionsItem = ({
+  title,
+  category,
+  amount,
+  type,
+  date,
+  icon: Icon,
+  color,
+}) => {
   return (
     <div className="grid grid-cols-[2fr_1fr_1fr] items-center py-2 border-b">
       {/* Left */}
       <div className="flex items-center gap-4">
-        <div className="text-2xl">{icon}</div>
+        <div
+          className="text-2xl p-2 rounded-full"
+          style={{ backgroundColor: `${color}60` }}
+        >
+          <Icon style={{ color }} />
+        </div>
 
         <div className="flex flex-col">
           <span className="text-base font-medium">{title}</span>

@@ -1,5 +1,7 @@
 import TransactionsItem from "./TransactionsItem";
 import TransactionStore from "../../Store/TransactionStore";
+import { categoryConfig } from "../../constants/categoryconfig";
+import { BsThreeDots } from "react-icons/bs";
 const RecentTransactions = () => {
   const transactions = TransactionStore((state) => state.transactions);
   return (
@@ -8,17 +10,25 @@ const RecentTransactions = () => {
         <span className="text-lg font-medium">Recent Transactions</span>
         <span className="font-medium text-purple-800">View More</span>
       </div>
-      {transactions.slice(0, 5).map((item) => (
-        <TransactionsItem
-          key={item.id}
-          title={item.title}
-          category={item.category}
-          amount={item.amount}
-          type={item.type}
-          date={item.date}
-          icon={item.icon}
-        />
-      ))}
+      {transactions.slice(0, 5).map((item) => {
+        const category = categoryConfig[item.category] || {
+          icon: BsThreeDots,
+          color: "#6B7280",
+        };
+
+        return (
+          <TransactionsItem
+            key={item.id}
+            title={item.title}
+            category={item.category}
+            amount={item.amount}
+            type={item.type}
+            date={item.date}
+            icon={category.icon}
+            color={category.color}
+          />
+        );
+      })}
     </div>
   );
 };
